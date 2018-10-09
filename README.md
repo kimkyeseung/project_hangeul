@@ -1,4 +1,4 @@
-# project_hanguel
+# project_hangeul
 바닐라코딩 1차 프로젝트
 
 ## 개요
