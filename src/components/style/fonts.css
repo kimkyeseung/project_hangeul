@@ -1,0 +1,16 @@
+.main-font-list {
+  width: 800px;
+  margin: 0 auto;
+  border: 1px solid green;
+}
+
+.main-font-list .main-font-thumbnail {
+  text-align: left;
+  width: 360px;
+  margin: 10px;
+  border: 1px solid red;
+  box-sizing: border-box;
+  padding: 10px;
+  display: inline-block;
+  background: lightgray;
+}

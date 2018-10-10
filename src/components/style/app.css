@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn {
+  display: block;
+  width: 80px;
+  margin: 4px 10px 0;
+  padding: 8px;
+  border: 1px solid #ddd;
+  float: left;
+}
+
+.App {
+  text-align: center;
+}
+
+.App .App-header {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+}
+
+.App .App-header img {
+  width: 148px;
+  height: 53px;
+}
+
+.App .App-header h1 {
+  text-indent: -9999px;
+}
+
+
+.App-body {
+  width: 800px;
+  height: 100%;
+  padding-top: 10%;
+  margin: 0 auto;
+}
+
+.App-body h1 {
+  overflow: visible;
+  font-size: 90px;
+}
+
+.App-body h2 {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.App-body form {
+  display: block;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.App-body form #main-search {
+  width: 120%;
+  height: 40px;
+  margin-left: -10%;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  text-indent: 20px;
+  font-size: 30px;
+  color: #aaa;
+}

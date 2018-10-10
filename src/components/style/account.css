@@ -1,0 +1,17 @@
+.account {
+  position: fixed;
+  right: 30px;
+  top: 20px;
+}
+
+.account h2 {
+  font-size: 20px;
+}
+
+.account p {
+  font-size: 16px;
+}
+
+.account .btn {
+  margin-top: 0;
+}
