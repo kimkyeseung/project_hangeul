@@ -1,7 +1,9 @@
 import { 
   GET_FONTS_LIST_SUCCESS, 
   OPEN_SIGN_UP_MODAL, 
-  OPEN_LOGIN_MODAL 
+  OPEN_LOGIN_MODAL,
+  AUTHENTICATE,
+  LOGOUT
 } from '../constants';
 
 const defaultState = {
@@ -33,6 +35,20 @@ const reducer = (state = defaultState, action) => {
     }
     case OPEN_LOGIN_MODAL: {
       newState.loginModal = !state.loginModal;
+      return newState;
+    }
+    case AUTHENTICATE: {
+      newState.isAuthenticated = true;
+      newState.user.name = action.name;
+      newState.user.email = action.email;
+      newState.signUpModal = false;
+      newState.loginModal = false;
+      return newState;
+    }
+    case LOGOUT: {
+      newState.isAuthenticated = false;
+      newState.user.name = '';
+      newState.user.email = '';
       return newState;
     }
     default: {

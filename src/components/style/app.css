@@ -4,15 +4,6 @@
   list-style: none;
 }
 
-.btn {
-  display: block;
-  width: 80px;
-  margin: 4px 10px 0;
-  padding: 8px;
-  border: 1px solid #ddd;
-  float: left;
-}
-
 .App {
   text-align: center;
 }
@@ -50,7 +41,7 @@
   font-size: 30px;
 }
 
-.App-body form {
+.App-body App-body-fontlist {
   display: block;
   width: 100%;
   padding-top: 30px;

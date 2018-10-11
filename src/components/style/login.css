@@ -1,4 +1,4 @@
-.signup-wrap {
+.login-wrap {
   position: fixed;
   left: 0;
   top: 0;
@@ -7,7 +7,7 @@
   background-color: rgba(0,0,0,0.8);
 }
 
-.signup {
+.login {
   width: 500px;
   display: block;
   background-color: white;
@@ -18,7 +18,7 @@
   box-shadow: 4px 4px #444;
 }
 
-.signup .signup-clear {
+.login .login-clear {
   display: block;
   position: absolute;
   top: 20px;
@@ -26,24 +26,19 @@
   color: #999;
 }
 
-.signup .signup-clear:hover {
+.login .login-clear:hover {
   color: #ddd;
 }
 
-.signup h2 {
+.login h2 {
   text-align: center;
 }
 
-.signup label {
-  text-align: left;
-}
-
-.signup input[type="text"] {
+.login input[type="text"] {
   height: 40px;
   border: 1px solid #ddd;
 }
 
-.signup .signup-submit {
+.login .login-submit {
   background-color: white;
 }
-

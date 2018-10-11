@@ -4,7 +4,7 @@ export const validateEmail = (email) => {
 };
 
 export const validateUserName = (name) => {
-  const valid = /^[ㄱ-ㅎ가-힣][^#&<>\"~;$^%{}?]{2,10}$/
+  const valid = /^[ㄱ-ㅎ가-힣][^#&<>\"~;$^%{}?]{1,10}$/
   return valid.test(name);
 };
 
