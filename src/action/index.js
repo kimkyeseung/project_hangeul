@@ -1,4 +1,6 @@
 import { 
+  GET_FONT_DETAIL_FROM_GOOGLE,
+  GET_FONTS_LIST_FROM_GOOGLE,
   GET_FONTS_LIST_SUCCESS, 
   OPEN_SIGN_UP_MODAL,
   OPEN_UPLOAD_MODAL, 
@@ -47,9 +49,24 @@ export const logout = () => {
   };
 };
 
-export const getFontDetail = (result) => {
+export const getFontDetail = result => {
   return {
     type: GET_FONT_DETAIL,
     fontDetail: result
   };
 };
+
+export const getFontsListFromGgl = (fonts, families) => {
+  return {
+    type: GET_FONTS_LIST_FROM_GOOGLE,
+    fonts,
+    families
+  };
+} ;
+
+export const getFontDetailFromGgl = font => {
+  return {
+    type: GET_FONT_DETAIL_FROM_GOOGLE,
+    font
+  }
+}

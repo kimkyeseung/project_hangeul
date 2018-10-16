@@ -9,6 +9,7 @@ import Login from './Login';
 import About from './About';
 import Upload from './Upload';
 import FontDetail from './FontDetail';
+import Tryout from './Tryout';
 
 const DEFAULT_PAGE_INDEX = 1;
 const DEFAULT_LIST_LIMIT = 10;
@@ -19,6 +20,8 @@ class App extends Component {
       page: DEFAULT_PAGE_INDEX,
       limit: DEFAULT_LIST_LIMIT
     });
+
+    this.props.getFontsListFromGgl();
   }
 
   render() {
@@ -75,6 +78,9 @@ class App extends Component {
                     fonts={this.props.fonts}
                     fontsPageIndex={this.props.fontsPageIndex}
                     fontsTotalCount={this.props.fontsTotalCount}
+                    getFontsListFromGgl={this.props.getFontsListFromGgl}
+                    fontsFromGgl={this.props.fontsFromGgl}
+                    fontsFromGglFamilies={this.props.fontsFromGglFamilies}
                   />
                 </Fragment>
               );
@@ -88,8 +94,16 @@ class App extends Component {
                   font={match.params.fontDetail}
                   fontDetail = {this.props.fontDetail}
                   getFontDetail={this.props.getFontDetail}
+                  getFontDetailFromGgl={this.props.getFontDetailFromGgl}
+                  fontsDetailFromGgl={this.props.fontsDetailFromGgl}
                 />);
             }} />
+
+            <Route path="/tryout" render={() => {
+              return (
+                <Tryout/>
+              );
+            }}/>
           </div>
 
         </div>

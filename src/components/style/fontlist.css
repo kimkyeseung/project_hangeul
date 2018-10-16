@@ -8,7 +8,16 @@
   width: 360px;
   margin: 0 5px 10px;
   display: inline-block;
+  white-space: pre;
   position: relative;
+}
+
+.main-font-list .main-font-card h2 {
+  margin: 0;
+}
+.main-font-list .main-font-card p {
+  margin: 0;
+  margin-top: 10px;
 }
 
 .main-font-list a:link,a:hover,a:active,a:visited {
@@ -20,16 +29,14 @@
   margin: 4px;
 }
 
+.main-font-list .main-font-card .main-font-list-tryout {
+  margin: 4px;
+}
+
 .main-font-list .main-font-card .main-font-title {
   padding: 0;
 }
 
 .main-font-list .main-font-card .main-font-list-like{
-  position: absolute;
-  right: 0;
+  margin: 4px;
 }
-/* 
-@font-face {
-  font-family: "BMKIRANGHAERANG-OTF";
-  src: url("https://project-hangeul.s3.ap-northeast-2.amazonaws.com/BMKIRANGHAERANG-OTF/BMKIRANGHAERANG-OTF.otf");
-} */

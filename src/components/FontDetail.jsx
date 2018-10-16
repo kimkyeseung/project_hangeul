@@ -1,68 +1,70 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
-import { load } from 'webfontloader';
+import { Link } from 'react-router-dom';
+import WebFont from 'webfontloader';
+import { dummyGenerate } from '../utils/dummyTexts';
+import { Typography } from '@material-ui/core';
 import './style/fontdetail.css';
 
 class FontDetail extends Component {
-  // componentDidMount() {
-  //   alert(this.props.font);
-  //   this.props.getFontDetail(this.props.font);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      family: this.props.font.replace(/[+]/g, ' '),
+      dummyText: dummyGenerate()
+    };
+  }
 
-  shouldComponentUpdate(nextProps) {
-    console.log(nextProps);
-    nextProps.getFontDetail(nextProps.font);
-    let families = nextProps.fontDetail.styles.length > 1 ? nextProps.styles : [nextProps.family];
-    load({
-      custom: {
-        families,
-        urls: nextProps.fontDetail.url
+  componentDidMount() {
+    WebFont.load({
+      google: {
+        families: [this.state.family]
       }
     });
-    return true;
+    this.props.getFontDetailFromGgl(this.state.family);
   }
 
   render() {
-    // console.log(this.props.fontDetail);
-    
     return (
-      <div className="font-detail">
-        {/* <div className="font-detail-left" style={{fontFamily: this.props.fontDetail.family}}> */}
+      <div className="font-detail" style={{fontFamily: this.state.family}}>
         <div className="font-detail-left" >
-          {/* <div className="font-detail-title">{this.props.fontInfo.displayName}</div> */}
+          <Typography component="p">Font Name</Typography>
+          <div className="font-detail-title">{this.state.family}</div>
+          <Button variant="outlined" onClick={() => {this.setState(() => {
+            let newDummy = dummyGenerate();
+            return {dummyText: newDummy}
+          })}}>텍스트 바꾸기</Button>
           <div className="font-detail-title"></div>
           <hr/>
-          <div className="font-detail-80">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-70">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-60">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-50">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-40">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-30">다람쥐 헌 쳇바퀴에 타고파</div>
-          <div className="font-detail-20">다람쥐 헌 쳇바퀴에 타고파</div>
-          <p>다람쥐 헌 쳇바퀴에 타고파</p>
+          <div className="font-detail-dummy font-detail-80">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-70">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-60">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-50">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-40">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-30">{this.state.dummyText}</div>
+          <div className="font-detail-dummy font-detail-20">{this.state.dummyText}</div>
 
+          <Typography component="p">characters</Typography>
+          <hr/>
           <div className="font-detail-all">
-          ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz가개갸거게겨고괴괘교구귀궤규그긔기나내냐너네녀노뇌뇨누뉘눼뉴느늬니다대댜더데뎌도되돼됴두뒤뒈류드듸디라래랴러레려로뢰료루뤼뤠류르릐리마매먀머메며모뫼묘무뮈뭬뮤므미바배뱌버베벼보뵈뵤부뷔붸뷰브비사새샤서세셔소쇠쇼수쉬쉐슈브비아애야어에여오외왜요우위웨유으의이자재쟈저제져조죄좨죠주쥐줴쥬즈지차채챠처체쳐초최쵸추취췌츄츠치카캐캬커케켜코쾨쾌쿄쿠퀴퀘큐크키타태탸터테텨토퇴퇘툐투튀퉤튜트틔티파패퍄퍼페펴포푀표푸퓌퓨프피하해햐허헤혀호회홰효후휘훼휴흐희히1234567890
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br/>abcdefghijklmnopqrstuvwxyz가개갸거게겨고괴괘교구귀궤규그긔기나내냐너네녀노뇌놰뇨누뉘눼뉴느늬니다대댜더데뎌도되돼됴두뒤뒈류드듸디라래랴러레려로뢰뢔료루뤼뤠류르릐리마매먀머메며모뫼뫠묘무뮈뭬뮤므믜미바배뱌버베벼보뵈봬뵤부뷔붸뷰브븨비사새샤서세셔소쇠쇄쇼수쉬쉐슈브븨비아애야어에여오외왜요우위웨유으의이자재쟈저제져조죄좨죠주쥐줴쥬즈즤지차채챠처체쳐초최쵀쵸추취췌츄츠츼치카캐캬커케켜코쾨쾌쿄쿠퀴퀘큐크킈키타태탸터테텨토퇴퇘툐투튀퉤튜트틔티파패퍄퍼페펴포푀퐤표푸퓌풰퓨프픠피하해햐허헤혀호회홰효후휘훼휴흐희히1234567890
           </div>
-          {/* {
-            this.props.fontDetail.styles.length > 1
-            ? <ul>
-              {this.props.fontDetail.styles.map(style => {
+
+          <Typography component="p">styles</Typography>
+          <hr/>
+          {
+            // this.props.fontsDetailFromGgl.variants ? 
+            <ul className="font-detail-variant">
+              {this.props.fontsDetailFromGgl.variants.map(style => {
                 return (
-                  <li style={{fontFamily: {style}}}>{style}</li>
+                  <li style={{fontFamily: `${this.props.fontsDetailFromGgl.family}:${style}`}}>{style}</li>
                 );
               })}
             </ul>
-            : null
-          } */}
+            //  : null
+          }
           
-          <Button>Tryout</Button>
-        </div>
-        <div className="font-detail-right">
-          <div className="font-detail-right-info">
-            <h3>Designer</h3>
-            {/* <p>{this.props.fontInfo.designer}</p> */}
-          </div>
+          <Button component={Link} to="/tryout">Tryout</Button>
         </div>
       </div>
     );

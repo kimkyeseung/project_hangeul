@@ -3,7 +3,9 @@ import App from '../components/App';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import {
+  getFontDetailFromGgl,
   getFontsListSuccess,
+  getFontsListFromGgl,
   openSignUpModal,
   openLoginModal,
   openUploadModal,
@@ -11,6 +13,7 @@ import {
   getFontDetail,
   logout
 } from '../action';
+import { ACCESS_KEY } from '../constants';
 
 
 const mapStateToProps = state => {
@@ -23,7 +26,10 @@ const mapStateToProps = state => {
     signUpModal: state.signUpModal,
     loginModal: state.loginModal,
     uploadModal: state.uploadModal,
-    fontDetail: state.fontDetail
+    fontDetail: state.fontDetail,
+    fontsFromGgl: state.fontsFromGgl,
+    fontsFromGglFamilies: state.fontsFromGglFamilies,
+    fontsDetailFromGgl: state.fontsDetailFromGgl
   };
 };
 
@@ -35,6 +41,24 @@ const mapDispatchToProps = dispatch => {
 
       axios.get(serverUrl).then(fonts => {
         dispatch(getFontsListSuccess(fonts.data));
+      }).catch(err => {
+        console.error(err);
+      });
+    },
+
+    getFontsListFromGgl() {
+      axios.get(`https://www.googleapis.com/webfonts/v1/webfonts?key=${ACCESS_KEY}`).then(result => {
+        const fontFromGgl = result.data.items.reduce((accom, val) => {
+          if (val.subsets.indexOf('korean') > -1) {
+            accom.push(val);
+          }
+          return accom;
+        }, []);
+        const families = fontFromGgl.reduce((accom, val) => {
+          accom.push(val.family);
+          return accom;
+        }, []);
+        dispatch(getFontsListFromGgl(fontFromGgl, families));
       }).catch(err => {
         console.error(err);
       });
@@ -132,6 +156,13 @@ const mapDispatchToProps = dispatch => {
         console.log('error on get Font detail ',err);
       });
     },
+
+    getFontDetailFromGgl(fontname) {
+      axios.get(`https://www.googleapis.com/webfonts/v1/webfonts?key=${ACCESS_KEY}`).then(result => {
+        const fontFromGgl = result.data.items.filter(font => font.family === fontname)[0];
+        dispatch(getFontDetailFromGgl(fontFromGgl))
+      }).catch();
+    }
   };
 };
 
