@@ -6,6 +6,7 @@
 
 .App {
   text-align: center;
+  background: #fafafa;
 }
 
 .App .App-header {
@@ -23,6 +24,17 @@
   text-indent: -9999px;
 }
 
+/* @font-face {
+  font-family: 'BMJUA';
+  src: url("https://s3.ap-northeast-2.amazonaws.com/project-hangeul/BMJUA/BMJUA_otf.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family:"BMKIRANGHAERANG";
+  src: url("https://s3.ap-northeast-2.amazonaws.com/project-hangeul/BMKIRANGHAERANG/BMKIRANGHAERANG-OTF.otf");
+  font-style:normal;font-weight:400;
+} */
 
 .App-body {
   width: 800px;

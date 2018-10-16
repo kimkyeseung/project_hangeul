@@ -1,7 +1,9 @@
 import { 
   GET_FONTS_LIST_SUCCESS, 
-  OPEN_SIGN_UP_MODAL, 
+  OPEN_SIGN_UP_MODAL,
+  OPEN_UPLOAD_MODAL, 
   OPEN_LOGIN_MODAL,
+  GET_FONT_DETAIL,
   AUTHENTICATE,
   LOGOUT 
 } from '../constants';
@@ -25,6 +27,12 @@ export const openLoginModal = () => {
   };
 };
 
+export const openUploadModal = () => {
+  return {
+    type: OPEN_UPLOAD_MODAL
+  };
+};
+
 export const authenticate = ({name, email}) => {
   return {
     type: AUTHENTICATE,
@@ -36,5 +44,12 @@ export const authenticate = ({name, email}) => {
 export const logout = () => {
   return {
     type: LOGOUT
+  };
+};
+
+export const getFontDetail = (result) => {
+  return {
+    type: GET_FONT_DETAIL,
+    fontDetail: result
   };
 };

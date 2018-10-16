@@ -6,9 +6,12 @@ import {
   getFontsListSuccess,
   openSignUpModal,
   openLoginModal,
+  openUploadModal,
   authenticate,
+  getFontDetail,
   logout
 } from '../action';
+
 
 const mapStateToProps = state => {
   return {
@@ -18,20 +21,21 @@ const mapStateToProps = state => {
     fontsPageIndex: state.fontsPageIndex,
     fontsTotalCount: state.fontsTotalCount,
     signUpModal: state.signUpModal,
-    loginModal: state.loginModal
+    loginModal: state.loginModal,
+    uploadModal: state.uploadModal,
+    fontDetail: state.fontDetail
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getFontsList({ q, page, limit }) {
-      let serverUrl = `http://localhost:5000/fonts?limit=${limit}&page=${page}`;
+      let serverUrl = `http://192.168.0.46:5000/fonts?limit=${limit}&page=${page}`;
       if (q) serverUrl += `&q=${q}`;
 
       axios.get(serverUrl).then(fonts => {
         dispatch(getFontsListSuccess(fonts.data));
       }).catch(err => {
-
         console.error(err);
       });
     },
@@ -44,8 +48,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(openLoginModal());
     },
 
+    openUploadModal() {
+      dispatch(openUploadModal());
+    },
+
     login({email, password}) {
-      fetch('http://localhost:5000/login', {
+      fetch('http://192.168.0.46:5000/login', {
         method: 'POST',
         body: JSON.stringify({
           email,
@@ -71,7 +79,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     signUp({name, email, password}) {
-      fetch('http://localhost:5000/signup', {
+      fetch('http://192.168.0.46:5000/signup', {
         method: 'POST',
         body: JSON.stringify({
           name,
@@ -93,7 +101,37 @@ const mapDispatchToProps = dispatch => {
 
     logout() {
       dispatch(logout());
-    }
+    },
+
+    upload(formData) {
+      fetch('http://192.168.0.46:5000/upload', {
+        method: 'POST',
+        body: formData
+      }).then(res => {
+        if (res.status === 200) {
+          alert('업로드가 완료되었습니다.');
+          console.log(res);
+          window.location.reload();
+        } else if (res.status === 400) {
+          alert('이미 존재하는 폰트입니다.');
+        } else if (res.status === 500) {
+          alert('서버 오류가 발생하였습니다. 잠시 후 다시 시도해주십시오.');
+        }
+      }).catch(err => {
+        console.error(err);
+        alert('오류가 발생하였습니다. 잠시 후 다시 시도해주십시오.')
+      });
+    },
+
+    getFontDetail(fontname) {
+      console.log('get font detail', fontname);
+      axios.get(`http://192.168.0.46:5000/font/${fontname}`).then(fontInfo => {
+        console.log('get font detail success',fontInfo);
+        dispatch(getFontDetail({ fontDetail: fontInfo.data }));
+      }).catch(err => {
+        console.log('error on get Font detail ',err);
+      });
+    },
   };
 };
 

@@ -1,0 +1,35 @@
+.main-font-list {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.main-font-list .main-font-card {
+  text-align: left;
+  width: 360px;
+  margin: 0 5px 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.main-font-list a:link,a:hover,a:active,a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.main-font-list .main-font-card .main-font-list-tryout {
+  margin: 4px;
+}
+
+.main-font-list .main-font-card .main-font-title {
+  padding: 0;
+}
+
+.main-font-list .main-font-card .main-font-list-like{
+  position: absolute;
+  right: 0;
+}
+/* 
+@font-face {
+  font-family: "BMKIRANGHAERANG-OTF";
+  src: url("https://project-hangeul.s3.ap-northeast-2.amazonaws.com/BMKIRANGHAERANG-OTF/BMKIRANGHAERANG-OTF.otf");
+} */

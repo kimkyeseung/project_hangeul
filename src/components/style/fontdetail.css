@@ -1,0 +1,70 @@
+.font-detail {
+  width: 100%;
+}
+
+.font-detail-left {
+  text-align: left;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+.font-detail-left div {
+  margin-bottom: 20px;
+}
+
+.font-detail-right {
+  border: 1px solid red;
+  background: #fafafa;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.font-detail-right-info {
+  margin-top: 50px;
+}
+
+.font-detail-right-info h3 {
+  
+}
+
+.font-detail-title {
+  font-size: 55px;
+}
+
+.font-detail-80 {
+  margin-top: 40px;
+  font-size: 80px;
+}
+
+.font-detail-70 {
+  font-size: 70px;
+}
+
+.font-detail-60 {
+  font-size: 60px;
+}
+
+.font-detail-50 {
+  font-size: 50px;
+}
+
+.font-detail-40 {
+  font-size: 40px;
+}
+
+.font-detail-30 {
+  font-size: 30px;
+}
+
+.font-detail-20 {
+  font-size: 20px;
+}
+
+.font-detail-all {
+  width: 600px;
+  font-size: 20px;
+  white-space: normal;
+}

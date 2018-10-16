@@ -1,4 +1,4 @@
-.signup-wrap {
+.upload-wrap {
   position: fixed;
   left: 0;
   top: 0;
@@ -8,7 +8,7 @@
   z-index: 1;
 }
 
-.signup {
+.upload {
   width: 500px;
   display: block;
   background-color: white;
@@ -19,7 +19,7 @@
   box-shadow: 4px 4px #444;
 }
 
-.signup .signup-clear {
+.upload-clear {
   display: block;
   position: absolute;
   top: 20px;
@@ -27,24 +27,31 @@
   color: #999;
 }
 
-.signup .signup-clear:hover {
+.upload-clear:hover {
   color: #ddd;
 }
 
-.signup h2 {
+.upload h2 {
   text-align: center;
 }
 
-.signup label {
+.upload label {
+  display: block;
+  width: 100%;
   text-align: left;
+  margin-top: 20px;
 }
 
-.signup input[type="text"] {
+.upload input[type="text"] {
   height: 40px;
   border: 1px solid #ddd;
 }
 
-.signup .signup-submit {
-  background-color: white;
+.upload textarea {
+  width: 100%;
+  height: 50px;
 }
 
+.upload-submit {
+  background-color: white;
+}

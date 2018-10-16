@@ -1,0 +1,13 @@
+@font-face {
+  font-family:"Makgeolli";
+  src:url("Makgeolli.woff2") format("woff2"),
+  url("Makgeolli.woff") format("woff"),
+  url("Makgeolli.otf") format("opentype");
+  font-style:normal;font-weight:400;
+}
+
+@font-face {
+  font-family:"Arita-dotum-SemiBold_OTF";
+  src:url("아리따-돋움(OTF)-SemiBold.woff2") format("woff2"),url("아리따-돋움(OTF)-SemiBold.woff") format("woff"),url("아리따-돋움(OTF)-SemiBold.otf") format("opentype");
+  font-style:normal;font-weight:400;
+}
