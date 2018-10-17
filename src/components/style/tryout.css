@@ -1,0 +1,37 @@
+.App-body {
+  width: 100%;
+  height: 100%;
+  padding-top: 5%;
+  position: relative;
+}
+
+.tryout {
+  width: 100%;
+}
+
+.tryout-board {
+  position: absolute;
+  left: 0;
+}
+
+.tryout-instance {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.tryout-control-label {
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.tryout-control-section {
+  position: relative;
+}
+
+.tryout-control-section .tryout-control-label {
+  position: absolute;
+  left: 0;
+}
+
+/* 안쓰는 부분 확인해서 지우기 */

@@ -16,26 +16,26 @@ const defaultState = {
     name: '',
     email: ''
   },
-  fonts: [],
+  fonts: [],//안쓰는거 다 지우기..
   fontsPageIndex: 1,
   fontsTotalCount: 0,
-  signUpModal: false,
-  loginModal: false,
-  uploadModal: false,
-  fontDetail: {
-    description: '',
-    designer: '',
-    display_name: '',
-    family: '',
-    monospaced: false,
-    liked: [],
-    styles: [],
-    url: '',
-  },
+  signUpModal: false,//showSignUpModal
+  loginModal: false,//
+  uploadModal: false,//
+  // fontDetail: {
+  //   description: '',
+  //   designer: '',
+  //   display_name: '',
+  //   family: '',
+  //   monospaced: false,
+  //   liked: [],
+  //   styles: [],
+  //   url: '',
+  // },
   fontsFromGgl: [],
   fontsFromGglFamilies: [],
   fontsDetailFromGgl: {
-    variants: []
+    variants: []//노멀라이즈: 정규화: 반드시!
   }
 };
 

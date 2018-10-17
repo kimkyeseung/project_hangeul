@@ -26,10 +26,9 @@
 }
 
 .App-body {
-  width: 800px;
   height: 100%;
   padding-top: 5%;
-  margin: 0 auto;
+  position: relative;
 }
 
 .App-body h1 {

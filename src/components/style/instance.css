@@ -1,0 +1,16 @@
+.instance-wrap {
+
+}
+
+.instance-panel div{
+  overflow: visible;
+}
+
+.instance-control-label {
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.instance-control-color-thumb {
+  position: relative;
+}

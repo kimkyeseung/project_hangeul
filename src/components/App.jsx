@@ -99,9 +99,9 @@ class App extends Component {
                 />);
             }} />
 
-            <Route path="/tryout" render={() => {
+            <Route path="/tryout/:tryout_id" render={({match}) => {
               return (
-                <Tryout/>
+                <Tryout tryoutId={match.params.tryout_id}/>// font={match.params.fontDetail} match={match.params.fontDetail}
               );
             }}/>
           </div>
