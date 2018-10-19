@@ -5,7 +5,7 @@ import './style/account.css';
 class Account extends Component {
   render() {
     let AccountComponent;
-    if (this.props.isAuthenticated) {
+    if (this.props.user.name) {
       AccountComponent = (<div className="account">
         <h2>{this.props.user.name}</h2>
         <Button className="btn-about" >폰트 업로드</Button>

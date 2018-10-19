@@ -51,7 +51,7 @@ class Controlpanel extends Component {
     this.props.colorPickHandler(rgb, locate, prop);
   }
 
-  numberAdjustHandler = debounce(this.props.numberAdjustHandler, 1000);
+  dataAdjustHandler = debounce(this.props.dataAdjustHandler, 1000);
   
 
   render() {
@@ -80,7 +80,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockMarginTop) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginTop');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginTop');
                 }}
               />
               <p className="textBlock-control-label">하단 여백(px) :</p>
@@ -88,7 +88,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockMarginBottom) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginBottom');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginBottom');
                 }}
               />
               <p className="textBlock-control-label">좌측 여백(px) :</p>
@@ -96,7 +96,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockMarginLeft) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginLeft');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginLeft');
                 }}
               />
               <p className="textBlock-control-label">우측 여백(px) :</p>
@@ -104,7 +104,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockMarginRight) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginRight');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockMarginRight');
                 }}
               />
             </div>
@@ -133,7 +133,7 @@ class Controlpanel extends Component {
               select
               value={this.props.textBlockData.textBlockFontFamily}
               onChange={ev => {
-                this.numberAdjustHandler(ev.target.value, identity, 'textBlockFontFamily')
+                this.dataAdjustHandler(ev.target.value, identity, 'textBlockFontFamily')
               }}
               >
                 {
@@ -154,7 +154,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockFontSize) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockFontSize');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockFontSize');
                 }}
               />
 
@@ -163,7 +163,7 @@ class Controlpanel extends Component {
               select
               value={this.props.textBlockData.textBlockFontStyle}
               onChange={ev => {
-                this.numberAdjustHandler(ev.target.value, identity, 'textBlockFontStyle')
+                this.dataAdjustHandler(ev.target.value, identity, 'textBlockFontStyle')
               }}
               >
                 {
@@ -182,7 +182,7 @@ class Controlpanel extends Component {
               select
               value={this.props.textBlockData.textBlockFontWeight}
               onChange={ev => {
-                this.numberAdjustHandler(ev.target.value, identity, 'textBlockFontWeight')
+                this.dataAdjustHandler(ev.target.value, identity, 'textBlockFontWeight')
               }}
               >
                 {
@@ -203,7 +203,7 @@ class Controlpanel extends Component {
               select
               value={this.props.textBlockData.textBlockTextAlign}
               onChange={ev => {
-                this.numberAdjustHandler(ev.target.value, identity, 'textBlockTextAlign')
+                this.dataAdjustHandler(ev.target.value, identity, 'textBlockTextAlign')
               }}
               >
                 {
@@ -222,7 +222,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockLetterSpace) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockLetterSpace');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockLetterSpace');
                 }}
               />
             </div>
@@ -242,7 +242,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockHeight) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockHeight');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockHeight');
                 }}
               />
               <p className="textBlock-control-label">개체 너비(%) :</p>
@@ -250,7 +250,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockWidth) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}%`, identity, 'textBlockWidth');
+                  this.dataAdjustHandler(`${ev.target.value}%`, identity, 'textBlockWidth');
                 }}
               />
               <p className="textBlock-control-label">상단 여백(px) :</p>
@@ -258,7 +258,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockPaddingTop) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingTop');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingTop');
                 }}
               />
               <p className="textBlock-control-label">하단 여백(px) :</p>
@@ -266,7 +266,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockPaddingBottom) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingBottom');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingBottom');
                 }}
               />
               <p className="textBlock-control-label">좌측 여백(px) :</p>
@@ -274,7 +274,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockPaddingLeft) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingLeft');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingLeft');
                 }}
               />
               <p className="textBlock-control-label">우측 여백(px) :</p>
@@ -282,7 +282,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockPaddingRight) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingRight');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockPaddingRight');
                 }}
               />
             </div>
@@ -301,7 +301,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockTextStrokeWidth) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextStrokeWidth');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextStrokeWidth');
                 }}
               />
             </div>
@@ -340,7 +340,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockTextShadowHorizonatal) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowHorizonatal');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowHorizonatal');
                 }}
               />
               <p className="textBlock-control-label">그림자 세로거리(px) :</p>
@@ -348,7 +348,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockTextShadowVertical) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowVertical');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowVertical');
                 }}
               />
               <p className="textBlock-control-label">그림자 흐림(px) :</p>
@@ -356,7 +356,7 @@ class Controlpanel extends Component {
                 type="number"
                 defaultValue={parseInt(this.props.textBlockData.textBlockTextShadowBlur) || 0}
                 onChange={ev => {
-                  this.numberAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowBlur');
+                  this.dataAdjustHandler(`${ev.target.value}px`, identity, 'textBlockTextShadowBlur');
                 }}
               />
             </div>

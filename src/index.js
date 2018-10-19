@@ -4,7 +4,7 @@ import './index.css';
 import App from './container/AppContainer';
 import { Provider } from 'react-redux';
 import reducer from './reducer';
-import { ConnectedRouter, connectRouter, routerMiddleware, push } from 'connected-react-router';
+import { ConnectedRouter, connectRouter, routerMiddleware } from 'connected-react-router';
 import { createStore, compose, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import { createBrowserHistory } from 'history';

@@ -4,32 +4,25 @@ import App from '../components/App';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import {
-  getFontDetailFromGgl,
-  getFontsListSuccess,
   getFontsListFromGgl,
   colorPickHandler,
-  numberAdjustHandler,
+  dataAdjustHandler,
   openSignUpModal,
   openUploadModal,
   textEditHandler,
   openLoginModal,
-  getFontDetail,
-  textEditStart,
-  callBlockinfo,
-  authenticate,
-  addTextBlock,
   logout,
+  login
 } from '../action';
-import { ACCESS_KEY } from '../constants';
+import { ACCESS_KEY } from '../config';
 
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.isAuthenticated,
     user: state.user,
-    signUpModal: state.signUpModal,
-    loginModal: state.loginModal,
-    uploadModal: state.uploadModal,
+    showSignUpModal: state.showSignUpModal,
+    showloginModal: state.showloginModal,
+    showuploadModal: state.showuploadModal,
     fontDetail: state.fontDetail,
     fontsFromGgl: state.fontsFromGgl,
     fontsDetailFromGgl: state.fontsDetailFromGgl,
@@ -44,16 +37,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getFontsList({ q, page, limit }) {
-      let serverUrl = `http://192.168.0.46:5000/fonts?limit=${limit}&page=${page}`;
-      if (q) serverUrl += `&q=${q}`;
-
-      axios.get(serverUrl).then(fonts => {
-        dispatch(getFontsListSuccess(fonts.data));
-      }).catch(err => {
-        console.error(err);
-      });
-    },
 
     getFontsListFromGgl() {
       axios.get(`https://www.googleapis.com/webfonts/v1/webfonts?key=${ACCESS_KEY}`).then(result => {
@@ -97,7 +80,7 @@ const mapDispatchToProps = dispatch => {
         if (res.status === 200) {
           res.json().then(data => {
             jwt.verify(data.token, 'KimKyeseung!', (err, decode) => {
-              dispatch(authenticate({ name: decode.name, email: decode.email }))
+              dispatch(login({ name: decode.name, email: decode.email }))
             });
           }).catch(err => {
             console.error(err);
@@ -125,7 +108,7 @@ const mapDispatchToProps = dispatch => {
           alert('이미 가입된 이메일이 존재합니다.');
           return;
         } else if (res.status === 201) {
-          dispatch(authenticate({ name: name, email: email }));
+          dispatch(login({ name: name, email: email }));
         } else {
           alert('오류가 발생하였습니다. 잠시 후 다시 시도해주시기 바랍니다.');
         }
@@ -156,23 +139,6 @@ const mapDispatchToProps = dispatch => {
       });
     },
 
-    getFontDetail(fontname) {
-      console.log('get font detail', fontname);
-      axios.get(`http://192.168.0.46:5000/font/${fontname}`).then(fontInfo => {
-        console.log('get font detail success',fontInfo);
-        dispatch(getFontDetail({ fontDetail: fontInfo.data }));
-      }).catch(err => {
-        console.log('error on get Font detail ',err);
-      });
-    },
-
-    getFontDetailFromGgl(fontname) {
-      axios.get(`https://www.googleapis.com/webfonts/v1/webfonts?key=${ACCESS_KEY}`).then(result => {
-        const fontFromGgl = result.data.items.filter(font => font.family === fontname)[0];
-        dispatch(getFontDetailFromGgl(fontFromGgl))
-      }).catch();
-    },
-
     colorPickHandler(rgb, locate, prop) {
       dispatch(colorPickHandler(rgb, locate, prop));
     },
@@ -181,20 +147,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(textEditHandler(locate, input));
     },
 
-    textEditStart() {
-      dispatch(textEditStart());
-    },
-
-    numberAdjustHandler(numeric, locate, prop) {
-      dispatch(numberAdjustHandler(numeric, locate, prop));
-    },
-
-    callBlockinfo(locate) {
-      dispatch(callBlockinfo(locate));
-    },
-
-    addTextBlock() {
-      dispatch(addTextBlock());
+    dataAdjustHandler(numeric, locate, prop) {
+      dispatch(dataAdjustHandler(numeric, locate, prop));
     }
   };
 };

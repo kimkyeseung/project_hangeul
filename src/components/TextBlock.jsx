@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, TextField, Typography, Divider, Button } from '@material-ui/core';
-import { Add, ExpandMore } from '@material-ui/icons/';
-import { SketchPicker } from 'react-color';
+import { Button } from '@material-ui/core';
+import { Add } from '@material-ui/icons/';
 import './style/textblock.css';
 
 class TextBlock extends Component {
@@ -43,7 +42,6 @@ class TextBlock extends Component {
   }
 
   render() {
-    console.log('#####', this.props.textBlockData);
     const editStyle = {
       display: 'block',
       position: 'absolute',
@@ -126,11 +124,7 @@ class TextBlock extends Component {
                 onKeyDown={ev => {
                   this.onTextEdit.call(this, ev)
                 }}
-                  // onKeyDown={this.onTextEdit.bind(this)}
                 style={editStyle}
-                // onBlur={(ev) => {
-                //   this.props.textEditHandler(false);
-                // }}
               />
               : null
           }

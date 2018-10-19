@@ -1,27 +1,14 @@
 import { 
-  GET_FONT_DETAIL_FROM_GOOGLE,
-  GET_FONTS_LIST_FROM_GOOGLE,
-  GET_FONTS_LIST_SUCCESS,
-  SET_ADJUSTED_NUMERIC,
-  SET_SELECTED_COLOR, 
+  GET_FONTS_LIST_FROM_GOOGLE_SUCCESS,
+  CHANGE_SELECTED_COLOR, 
+  CHANGE_ADJUSTED_DATA,
+  CHANGE_EDITED_TEXT,
   OPEN_SIGN_UP_MODAL,
   OPEN_UPLOAD_MODAL, 
   OPEN_LOGIN_MODAL,
-  START_TEXT_EDIT,
-  SET_EDITED_TEXT,
-  GET_FONT_DETAIL,
-  CALL_BLOCKINFO,
-  ADD_TEXTBLOCK,
-  AUTHENTICATE,
-  LOGOUT 
-} from '../constants';
-
-export const getFontsListSuccess = fontsList => {
-  return {
-    type: GET_FONTS_LIST_SUCCESS,
-    fontsList
-  };
-};
+  LOGOUT, 
+  LOGIN
+} from '../constants/actionTypes';
 
 export const openSignUpModal = () => {
   return {
@@ -41,10 +28,10 @@ export const openUploadModal = () => {
   };
 };
 
-export const authenticate = ({name, email}) => {
+export const login = ({name, email}) => {
   return {
-    type: AUTHENTICATE,
     name,
+    type: LOGIN,
     email
   };
 };
@@ -55,32 +42,16 @@ export const logout = () => {
   };
 };
 
-export const getFontDetail = result => {
+export const getFontsListFromGgl = (fonts) => {
   return {
-    type: GET_FONT_DETAIL,
-    fontDetail: result
-  };
-};
-
-export const getFontsListFromGgl = (fonts, families) => {
-  return {
-    type: GET_FONTS_LIST_FROM_GOOGLE,
-    fonts,
-    families
-  };
-} ;
-
-export const getFontDetailFromGgl = font => {
-  return {
-    type: GET_FONT_DETAIL_FROM_GOOGLE,
-    font
+    type: GET_FONTS_LIST_FROM_GOOGLE_SUCCESS,
+    fonts
   };
 };
 
 export const colorPickHandler = (color, locate, prop) => {
-  console.log('action', color, locate, prop);
   return {
-    type: SET_SELECTED_COLOR,
+    type: CHANGE_SELECTED_COLOR,
     color,
     locate,
     prop
@@ -89,36 +60,17 @@ export const colorPickHandler = (color, locate, prop) => {
 
 export const textEditHandler = (locate, input) => {
   return {
-    type: SET_EDITED_TEXT,
+    type: CHANGE_EDITED_TEXT,
     locate,
     input
   }
 };
 
-export const textEditStart = () => {
+export const dataAdjustHandler = (data, locate, prop) => {
   return {
-    type: START_TEXT_EDIT
-  };
-};
-
-export const numberAdjustHandler = (numeric, locate, prop) => {
-  return {
-    type: SET_ADJUSTED_NUMERIC,
-    numeric,
+    type: CHANGE_ADJUSTED_DATA,
+    data,
     locate,
     prop
-  };
-};
-
-export const callBlockinfo = locate => {
-  return {
-    type: CALL_BLOCKINFO,
-    locate
-  };
-};
-
-export const addTextBlock = () => {
-  return {
-    type: ADD_TEXTBLOCK
   };
 };

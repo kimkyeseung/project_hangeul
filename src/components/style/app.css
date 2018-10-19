@@ -29,18 +29,12 @@
 
 .App-body {
   height: 100%;
-  padding-top: 5%;
   position: relative;
 }
 
-.App-body h1 {
+.App-body h1,h2 {
   overflow: visible;
-  font-size: 90px;
-}
-
-.App-body h2 {
-  margin-top: 20px;
-  font-size: 30px;
+  transition: 0.3s;
 }
 
 .App-body App-body-fontlist {
@@ -49,13 +43,8 @@
   padding-top: 30px;
 }
 
-.App-body form #main-search {
-  width: 120%;
-  height: 40px;
-  margin-left: -10%;
-  border: 1px solid #aaa;
-  border-radius: 20px;
-  text-indent: 20px;
-  font-size: 30px;
-  color: #aaa;
+.App-body form {
+  width: 50%;
+  margin-left: 25%;
+  padding-bottom: 30px;
 }

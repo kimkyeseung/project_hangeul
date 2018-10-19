@@ -1,1 +1,1 @@
-//key
+export const ACCESS_KEY = 'AIzaSyCffSfng97jBny41n8DPmidpS5FFK_huAA';

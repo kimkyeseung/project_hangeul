@@ -8,11 +8,11 @@ import Blockinfo from './Blockinfo';
 class Tryout extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isBlockinfoOn: false,
       selectedTextBlockIndex: 0,
-      blockInfoIndex: 0
+      blockInfoIndex: 0,
+      texblockCount: 1
     };
   }
 
@@ -41,8 +41,15 @@ class Tryout extends Component {
     }));
   }
 
+  addTextBlock() {
+    this.setState((prevState) => {
+      return {
+        texblockCount: prevState.texblockCount++
+      };
+    });
+  }
+
   render() {
-    console.log('@@@@@',this.props.textBlocks);
     const boardStyle = {
       position: 'relative',
       width: this.props.boardData.boardWidth,
@@ -54,7 +61,7 @@ class Tryout extends Component {
     const blockIdentities = ['textBlockData', 'secondTextBlockData', 'thirdTextBlockData'];
     let range = [];
 
-    for (let i = 0; i < this.props.activeTextBlock; i++) {
+    for (let i = 0; i < this.state.texblockCount; i++) {
       range.push(i+1);
     }
 
@@ -71,9 +78,9 @@ class Tryout extends Component {
                   shouldShowAddButton={shouldShowAddButton}
                   textBlockData={this.props.textBlocks[index]}
                   textEditHandler={this.props.textEditHandler}
-                  onAddButtonClick={this.props.addTextBlock}
                   onTextMouseEnter={this.toggleBlockInfo.bind(this, index)}
                   onTextMouseLeave={this.toggleBlockInfo.bind(this)}
+                  onAddButtonClick={this.addTextBlock.bind(this)}
                 />
               );
             })
@@ -114,7 +121,7 @@ class Tryout extends Component {
           identity={blockIdentities[this.state.selectedTextBlockIndex]}
           textBlockData={this.props.textBlocks[this.state.selectedTextBlockIndex]}
           colorPickHandler={this.props.colorPickHandler}
-          numberAdjustHandler={this.props.numberAdjustHandler}
+          dataAdjustHandler={this.props.dataAdjustHandler}
           fontsFromGgl={this.props.fontsFromGgl}
         />
       </div>

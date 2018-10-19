@@ -1,38 +1,27 @@
 import { cloneDeep } from 'lodash';
 
 import { 
-  GET_FONT_DETAIL_FROM_GOOGLE,
-  GET_FONTS_LIST_FROM_GOOGLE,
-  GET_FONTS_LIST_SUCCESS,
-  SET_ADJUSTED_NUMERIC,
-  SET_SELECTED_COLOR, 
+  GET_FONTS_LIST_FROM_GOOGLE_SUCCESS,
+  CHANGE_ADJUSTED_DATA,
+  CHANGE_SELECTED_COLOR, 
+  CHANGE_EDITED_TEXT,
   OPEN_SIGN_UP_MODAL,
   OPEN_UPLOAD_MODAL,
   OPEN_LOGIN_MODAL,
-  SET_EDITED_TEXT,
-  START_TEXT_EDIT,
-  GET_FONT_DETAIL,
-  CALL_BLOCKINFO,
-  ADD_TEXTBLOCK,
-  AUTHENTICATE,
-  LOGOUT
-} from '../constants';
+  LOGOUT,
+  LOGIN
+} from '../constants/actionTypes';
 
 const defaultState = {
-  isAuthenticated: false,
   user: {
     name: '',
     email: ''
   },
-  signUpModal: false,//showSignUpModal
-  loginModal: false,//
-  uploadModal: false,//
+  showSignUpModal: false,
+  showloginModal: false,
+  showuploadModal: false,
   fontsFromGgl: [],
-  fontsDetailFromGgl: {
-    variants: []//노멀라이즈: 정규화: 반드시!
-  },
-  activeTextBlock: 1,
-  textBlockData: {
+  textBlockData: {//배열로 하나로 묶기
     text: '더블클릭하여 텍스트를 수정하세요',
     editMode: false,
     textBlockHeight: '120px',
@@ -66,7 +55,14 @@ const defaultState = {
     textBlockPaddingLeft: '10px',
   },
   secondTextBlockData: {
-    text: '더블클릭하여 텍스트를 수정하세요',
+    text: `별 하나에 추억(追憶)과 별 하나에 사랑과 별 하나에 쓸쓸함과 별 하나에 동경(憧憬)과 별 하나에 시(詩)와 별 하나에 어머니, 어머니
+    어머님, 나는 별 하나에 아름다운 말 한마디씩 불러봅니다 소학교(小學校) 때 책상(冊床)을 같이 했든 아이들의 이름과, 패(佩), 경(鏡), 옥(玉)
+    이런 이국(異國) 소녀(少女)들의 이름과, 벌써 아기 어머니 된 계집애들의 이름과 가난한 이웃 사람들의 이름과, 비둘기, 강아지, 토끼, 노새,
+    노루, “프랑시스 · 잠” “라이너 · 마리아 · 릴케” 이런 시인(詩人)들의 이름을 불러봅니다.
+    이네들은 너무나 멀리 있읍니다. 별이 아슬이 멀듯이, 어머님, 그리고 당신은 멀리 북간도(北間島)에 게십니다.
+    나는 무엇인지 그리워 이 많은 별빛이 나린 언덕 우에 내 이름자를 써 보고, 흙으로 덮어 버리었읍니다.
+    딴은 밤을 새워 우는 벌레는 부끄러운 이름을 슬퍼하는 까닭입니다.
+    그러나 겨울이 지나고 나의 별에도 봄이 오면 무덤우에 파란 잔디가 피어나듯이 내 이름자 묻힌 언덕우에도 자랑처럼 풀이 무성할게외다.`,
     editMode: false,
     textBlockHeight: '50px',
     textBlockWidth: '100%',
@@ -139,19 +135,12 @@ const defaultState = {
     boardBorderWidth: '1px',
     boardBorderStyle: 'solid',
     boardBorderColor: 'black',
-  },
-  blockinfoOn: false
+  }
 };
 
 const reducer = (state = defaultState, action) => {
   let newState = cloneDeep(state);
   switch (action.type) {
-    case GET_FONTS_LIST_SUCCESS: {
-      newState.fonts = action.fontsList.fonts;
-      newState.page = action.fontsList.page;
-      newState.total_count = action.fontsList.total_count;
-      return newState;
-    }
     case OPEN_SIGN_UP_MODAL: {
       newState.signUpModal = !state.signUpModal;
       return newState;
@@ -164,8 +153,7 @@ const reducer = (state = defaultState, action) => {
       newState.uploadModal = !state.uploadModal;
       return newState;
     }
-    case AUTHENTICATE: {
-      newState.isAuthenticated = true;
+    case LOGIN: {
       newState.user.name = action.name;
       newState.user.email = action.email;
       newState.signUpModal = false;
@@ -173,46 +161,24 @@ const reducer = (state = defaultState, action) => {
       return newState;
     }
     case LOGOUT: {
-      newState.isAuthenticated = false;
-      newState.user.name = '';
-      newState.user.email = '';
+      newState.user.name = null;
+      newState.user.email = null;
       return newState;
     }
-    case GET_FONT_DETAIL: {
-      newState.fontDetail = action.fontDetail
-      return newState;
-    }
-    case GET_FONTS_LIST_FROM_GOOGLE: {
+    case GET_FONTS_LIST_FROM_GOOGLE_SUCCESS: {
       newState.fontsFromGgl = action.fonts;
       return newState;
     }
-    case GET_FONT_DETAIL_FROM_GOOGLE: {
-      newState.fontsDetailFromGgl = action.font;
-      return newState;
-    }
-    case SET_SELECTED_COLOR: {
+    case CHANGE_SELECTED_COLOR: {
       newState[action.locate][action.prop] = `rgba(${action.color.r}, ${action.color.g}, ${action.color.b}, ${action.color.a})`;
       return newState;
     }
-    case SET_EDITED_TEXT: {
+    case CHANGE_EDITED_TEXT: {
       newState[action.locate].text = action.input;
-      newState[action.locate].editMode = false;
       return newState;
     }
-    case START_TEXT_EDIT: {
-      newState.textBlockData.editMode = true;
-      return newState;
-    }
-    case SET_ADJUSTED_NUMERIC: {
-      newState[action.locate][action.prop] = action.numeric
-      return newState;
-    }
-    case CALL_BLOCKINFO: {
-      newState.blockinfoOn = action.locate
-      return newState;
-    }
-    case ADD_TEXTBLOCK: {
-      newState.activeTextBlock = newState.activeTextBlock + 1;
+    case CHANGE_ADJUSTED_DATA: {
+      newState[action.locate][action.prop] = action.data
       return newState;
     }
     default: {

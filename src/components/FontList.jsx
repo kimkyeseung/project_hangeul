@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { ThumbUp } from '@material-ui/icons';
-import { Card, Button, CardActionArea, CardContent, Typography, IconButton } from '@material-ui/core';
+import { Card, Button, CardContent, IconButton } from '@material-ui/core';
 import './style/fontlist.css';
 import WebFont from 'webfontloader';
 import { dummyGenerate } from '../utils/dummyTexts';
 
 class FontList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dummyText: dummyGenerate()
+    };
+  }
+
   componentDidMount() {
     this.props.getFontsListFromGgl();
   }
@@ -33,10 +40,10 @@ class FontList extends Component {
             return (
               <Card key={`_${val.family}`} className="main-font-card">
                 <CardContent>
-                  <Typography component="h2" className="main-font-title" style={{ fontFamily: val.family}}>
-                    {dummyGenerate()}
-                  </Typography>
-                  <Typography component="p">{val.family}</Typography>
+                  <p className="main-font-title" style={{ fontFamily: val.family, fontSize: '30px'}}>
+                    {this.state.dummyText}
+                  </p>
+                  <p>{val.family}</p>
                 </CardContent>
                 <Button className="main-font-list-tryout" size="small" color="primary">Tryout</Button>
                 <Button component={Link} to={`/font/${val.family.split(' ').join('+')}`} className="main-font-list-about" size="small" color="primary">About</Button>
@@ -49,7 +56,6 @@ class FontList extends Component {
             );
           })
         }
-        work?
       </div>
     );
   }
