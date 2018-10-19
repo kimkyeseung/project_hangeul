@@ -12,11 +12,13 @@ class FontList extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log(nextProps.fontsFromGglFamilies);
-    if (nextProps.fontsFromGglFamilies.length !== 0) {
+    if (nextProps.fontsFromGgl.length !== 0) {
+      const fontFamilies = nextProps.fontsFromGgl.map(font => {
+        return font.family;
+      })
       WebFont.load({
         google: {
-          families: nextProps.fontsFromGglFamilies
+          families: fontFamilies
         }
       });
     }
@@ -26,28 +28,6 @@ class FontList extends Component {
   render() {
     return (
       <div className="main-font-list">
-        {/* {
-          this.props.fonts.map(val => {
-            return (
-              <Card key={val._id} className="main-font-card">
-                <CardActionArea component={Link} to={`/font/${val.family.split(' ').join('+')}`}>
-                  <CardContent>
-                    <Typography component="h2" className="main-font-title" style={{ fontFamily: val.family, color: "red" }}>
-                      {val.display_name}
-                    </Typography>
-                    <Typography component="p">by {val.designer}</Typography>
-                  </CardContent>
-                </CardActionArea>
-                <Button className="main-font-list-tryout" size="small" color="primary">Tryout</Button>
-                <IconButton className="main-font-list-like" onClick={() => {
-                  alert(val._id)
-                }} >
-                  <ThumbUp />
-                </IconButton>
-              </Card>
-            );
-          })
-        } */}
         {
           this.props.fontsFromGgl.map(val => {
             return (

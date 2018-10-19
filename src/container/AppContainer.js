@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import App from '../components/App';
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
@@ -6,12 +7,18 @@ import {
   getFontDetailFromGgl,
   getFontsListSuccess,
   getFontsListFromGgl,
+  colorPickHandler,
+  numberAdjustHandler,
   openSignUpModal,
-  openLoginModal,
   openUploadModal,
-  authenticate,
+  textEditHandler,
+  openLoginModal,
   getFontDetail,
-  logout
+  textEditStart,
+  callBlockinfo,
+  authenticate,
+  addTextBlock,
+  logout,
 } from '../action';
 import { ACCESS_KEY } from '../constants';
 
@@ -20,16 +27,18 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.isAuthenticated,
     user: state.user,
-    fonts: state.fonts,
-    fontsPageIndex: state.fontsPageIndex,
-    fontsTotalCount: state.fontsTotalCount,
     signUpModal: state.signUpModal,
     loginModal: state.loginModal,
     uploadModal: state.uploadModal,
     fontDetail: state.fontDetail,
     fontsFromGgl: state.fontsFromGgl,
-    fontsFromGglFamilies: state.fontsFromGglFamilies,
-    fontsDetailFromGgl: state.fontsDetailFromGgl
+    fontsDetailFromGgl: state.fontsDetailFromGgl,
+    activeTextBlock: state.activeTextBlock,
+    textBlockData: state.textBlockData,
+    secondTextBlockData: state.secondTextBlockData,
+    thirdTextBlockData: state.thirdTextBlockData,
+    boardData: state.boardData,
+    blockinfoOn: state.blockinfoOn
   };
 };
 
@@ -162,10 +171,34 @@ const mapDispatchToProps = dispatch => {
         const fontFromGgl = result.data.items.filter(font => font.family === fontname)[0];
         dispatch(getFontDetailFromGgl(fontFromGgl))
       }).catch();
+    },
+
+    colorPickHandler(rgb, locate, prop) {
+      dispatch(colorPickHandler(rgb, locate, prop));
+    },
+
+    textEditHandler(locate, input) {
+      dispatch(textEditHandler(locate, input));
+    },
+
+    textEditStart() {
+      dispatch(textEditStart());
+    },
+
+    numberAdjustHandler(numeric, locate, prop) {
+      dispatch(numberAdjustHandler(numeric, locate, prop));
+    },
+
+    callBlockinfo(locate) {
+      dispatch(callBlockinfo(locate));
+    },
+
+    addTextBlock() {
+      dispatch(addTextBlock());
     }
   };
 };
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+const AppContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
 
 export default AppContainer

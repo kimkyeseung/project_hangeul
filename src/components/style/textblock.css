@@ -1,0 +1,17 @@
+.textBlock-panel div{
+  overflow: visible;
+}
+
+.textBlock-control-label {
+  text-align: left;
+  margin-bottom: 4px;
+}
+
+.textBlock-control-color-thumb {
+  position: relative;
+}
+
+.textBlock-control-colorpicker-wrap {
+  width: 100%;
+  height: 300px;
+}

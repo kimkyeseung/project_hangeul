@@ -16,18 +16,11 @@ const DEFAULT_LIST_LIMIT = 10;
 
 class App extends Component {
   componentDidMount() {
-    this.props.getFontsList({
-      page: DEFAULT_PAGE_INDEX,
-      limit: DEFAULT_LIST_LIMIT
-    });
-
     this.props.getFontsListFromGgl();
   }
 
   render() {
-    console.log('render');
     return (
-      <Router>
         <div className="App">
           <header className="App-header">
             <Link to="/">
@@ -75,12 +68,8 @@ class App extends Component {
                   </form>
 
                   <FontList
-                    fonts={this.props.fonts}
-                    fontsPageIndex={this.props.fontsPageIndex}
-                    fontsTotalCount={this.props.fontsTotalCount}
                     getFontsListFromGgl={this.props.getFontsListFromGgl}
                     fontsFromGgl={this.props.fontsFromGgl}
-                    fontsFromGglFamilies={this.props.fontsFromGglFamilies}
                   />
                 </Fragment>
               );
@@ -96,18 +85,39 @@ class App extends Component {
                   getFontDetail={this.props.getFontDetail}
                   getFontDetailFromGgl={this.props.getFontDetailFromGgl}
                   fontsDetailFromGgl={this.props.fontsDetailFromGgl}
-                />);
+                  fontsFromGgl={this.props.fontsFromGgl}
+                />
+              );
             }} />
 
-            <Route path="/tryout/:tryout_id" render={({match}) => {
+            <Route path="/tryout/:tryout_id" render={({ match }) => {
+              let textBlocks = [
+                this.props.textBlockData,
+                this.props.secondTextBlockData,
+                this.props.thirdTextBlockData
+              ];
+
               return (
-                <Tryout tryoutId={match.params.tryout_id}/>// font={match.params.fontDetail} match={match.params.fontDetail}
+                <Tryout
+                  tryoutId={match.params.tryout_id}
+                  textBlocks={textBlocks}
+                  boardData={this.props.boardData}
+                  fontsFromGgl={this.props.fontsFromGgl}
+                  textEditStart={this.props.textEditStart}
+                  textEditHandler={this.props.textEditHandler}
+                  colorPickToggle={this.props.colorPickToggle}
+                  colorPickHandler={this.props.colorPickHandler}
+                  numberAdjustHandler={this.props.numberAdjustHandler}
+                  activeTextBlock={this.props.activeTextBlock}
+                  callBlockinfo={this.props.callBlockinfo}
+                  blockinfoOn={this.props.blockinfoOn}
+                  addTextBlock={this.props.addTextBlock}
+                />
               );
             }}/>
           </div>
 
         </div>
-      </Router>
     );
   }
 }

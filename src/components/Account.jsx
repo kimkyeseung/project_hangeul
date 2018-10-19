@@ -15,7 +15,6 @@ class Account extends Component {
       AccountComponent = (<div className="account">
         <Button className="btn-signup" onClick={this.props.openSignUpModal}>회원가입</Button>
         <Button className="btn-login" onClick={this.props.openLoginModal}>로그인</Button>
-        <Button className="btn-about" onClick={this.props.openUploadModal} >폰트 업로드</Button>
       </div>)
     }
     return AccountComponent;
