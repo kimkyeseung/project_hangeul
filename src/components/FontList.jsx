@@ -45,7 +45,14 @@ class FontList extends Component {
                   </p>
                   <p>{val.family}</p>
                 </CardContent>
-                <Button className="main-font-list-tryout" size="small" color="primary">Tryout</Button>
+                <Button
+                  className="main-font-list-tryout"
+                  size="small"
+                  color="primary"
+                  href={this.props.user.name ? '/tryout/:id' : null}
+                >
+                  Tryout
+                </Button>
                 <Button component={Link} to={`/font/${val.family.split(' ').join('+')}`} className="main-font-list-about" size="small" color="primary">About</Button>
                 <IconButton className="main-font-list-like" onClick={() => {
                   alert(val._id)

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Tabs, Tab } from '@material-ui/core';
 import TextBlock from './TextBlock';
+import BoardControlpanel from './BoardControlpanel';
 import Controlpanel from './Controlpanel';
 import WebFont from 'webfontloader';
 import Blockinfo from './Blockinfo';
+import './style/tryout.css';
 
 class Tryout extends Component {
   constructor(props) {
@@ -44,7 +46,7 @@ class Tryout extends Component {
   addTextBlock() {
     this.setState((prevState) => {
       return {
-        texblockCount: prevState.texblockCount++
+        texblockCount: prevState.texblockCount + 1
       };
     });
   }
@@ -62,7 +64,7 @@ class Tryout extends Component {
     let range = [];
 
     for (let i = 0; i < this.state.texblockCount; i++) {
-      range.push(i+1);
+      range.push(i + 1);
     }
 
     return (
@@ -86,44 +88,52 @@ class Tryout extends Component {
             })
           }
           {
-            this.state.isBlockinfoOn ? 
-            <Blockinfo
-              textBlockFontFamily={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontFamily}
-              textBlockFontStyle={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontStyle}
-              textBlockFontSize={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontSize}
-              textBlockLineHeight={this.props.textBlocks[this.state.blockInfoIndex].textBlockLineHeight}
-              textBlockLetterSpace={this.props.textBlocks[this.state.blockInfoIndex].textBlockLetterSpace}
-            />
-            : null
+            this.state.isBlockinfoOn ?
+              <Blockinfo
+                textBlockFontFamily={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontFamily}
+                textBlockFontStyle={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontStyle}
+                textBlockFontSize={this.props.textBlocks[this.state.blockInfoIndex].textBlockFontSize}
+                textBlockLineHeight={this.props.textBlocks[this.state.blockInfoIndex].textBlockLineHeight}
+                textBlockLetterSpace={this.props.textBlocks[this.state.blockInfoIndex].textBlockLetterSpace}
+              />
+              : null
           }
         </div>
 
-        <Tabs
-          value={this.state.selectedTextBlockIndex}
-          fullWidth={true}
+
+        <div
           style={{
             position: 'absolute',
             right: '20px',
             top: '8%',
-          }}
-          onChange={this.tabChangeHandler.bind(this)}
-        >
-        {
-          range.length && range.map((order, index) => {
-            return (
-              <Tab key={index} label={'개체'+ order} style={{minWidth: 10}}></Tab>
-            );
-          })
-        }
-        </Tabs>
-        
-        <Controlpanel
-          identity={blockIdentities[this.state.selectedTextBlockIndex]}
-          textBlockData={this.props.textBlocks[this.state.selectedTextBlockIndex]}
-          colorPickHandler={this.props.colorPickHandler}
-          dataAdjustHandler={this.props.dataAdjustHandler}
-          fontsFromGgl={this.props.fontsFromGgl}
-        />
+          }}>
+          <BoardControlpanel
+            dataAdjustHandler={this.props.dataAdjustHandler}
+            colorPickHandler={this.props.colorPickHandler}
+            boardData={this.props.boardData}
+          />
+          <Tabs
+            value={this.state.selectedTextBlockIndex}
+            fullWidth={true}
+            onChange={this.tabChangeHandler.bind(this)}
+          >
+            {
+              range.length && range.map((order, index) => {
+                return (
+                  <Tab key={index} label={'개체' + order} style={{ minWidth: 10 }}></Tab>
+                );
+              })
+            }
+          </Tabs>
+
+          <Controlpanel
+            identity={blockIdentities[this.state.selectedTextBlockIndex]}
+            textBlockData={this.props.textBlocks[this.state.selectedTextBlockIndex]}
+            colorPickHandler={this.props.colorPickHandler}
+            dataAdjustHandler={this.props.dataAdjustHandler}
+            fontsFromGgl={this.props.fontsFromGgl}
+          />
+        </div>
       </div>
     );
   }

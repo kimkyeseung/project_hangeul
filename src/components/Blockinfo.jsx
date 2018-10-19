@@ -10,8 +10,8 @@ class Blockinfo extends Component {
             top: '20px',
             left: '20px',
             opacity: 0.5
-          }} onClick={alert.bind(this, 1)
-        }>
+          }} 
+        >
           <p>Font Family : {this.props.textBlockFontFamily}</p>
           <p>Font Style : {this.props.textBlockFontStyle}</p>
           <p>Font Size : {this.props.textBlockFontSize}</p>

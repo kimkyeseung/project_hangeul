@@ -3,30 +3,9 @@ import {
   CHANGE_SELECTED_COLOR, 
   CHANGE_ADJUSTED_DATA,
   CHANGE_EDITED_TEXT,
-  OPEN_SIGN_UP_MODAL,
-  OPEN_UPLOAD_MODAL, 
-  OPEN_LOGIN_MODAL,
   LOGOUT, 
   LOGIN
 } from '../constants/actionTypes';
-
-export const openSignUpModal = () => {
-  return {
-    type: OPEN_SIGN_UP_MODAL
-  };
-};
-
-export const openLoginModal = () => {
-  return {
-    type: OPEN_LOGIN_MODAL
-  };
-};
-
-export const openUploadModal = () => {
-  return {
-    type: OPEN_UPLOAD_MODAL
-  };
-};
 
 export const login = ({name, email}) => {
   return {

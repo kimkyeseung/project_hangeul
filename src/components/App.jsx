@@ -15,7 +15,7 @@ import { debounce } from 'lodash';
 let defaultMainStyle = {
   titleStyle: {
     fontSize: '120px',
-    marginTop: '200px',
+    paddingTop: '200px',
     marginBottom: '50px'
   },
   subTitleStyle: {
@@ -24,7 +24,7 @@ let defaultMainStyle = {
   },
   shrinkedTitleStyle: {
     fontSize: '40px',
-    marginTop: '50px',
+    paddingTop: '80px',
     marginBottom: '20px'
   },
   shrinkedSubTitleStyle: {
@@ -89,6 +89,7 @@ class App extends Component {
           openLoginModal={this.props.openLoginModal}
           openUploadModal={this.props.openUploadModal}
           logout={this.props.logout}
+          signUp={this.props.signUp}
           user={this.props.user} />
 
         <div className="App-body">
@@ -118,6 +119,7 @@ class App extends Component {
                 </form>
 
                 <FontList
+                  user={this.props.user}
                   getFontsListFromGgl={this.props.getFontsListFromGgl}
                   fontsFromGgl={this.props.fontsFromGgl.filter(font => {
                     return font.family.toLowerCase().indexOf(this.state.searchKeyword.toLowerCase()) > -1;

@@ -7,10 +7,7 @@ import {
   getFontsListFromGgl,
   colorPickHandler,
   dataAdjustHandler,
-  openSignUpModal,
-  openUploadModal,
   textEditHandler,
-  openLoginModal,
   logout,
   login
 } from '../action';
@@ -20,9 +17,6 @@ import { ACCESS_KEY } from '../config';
 const mapStateToProps = state => {
   return {
     user: state.user,
-    showSignUpModal: state.showSignUpModal,
-    showloginModal: state.showloginModal,
-    showuploadModal: state.showuploadModal,
     fontDetail: state.fontDetail,
     fontsFromGgl: state.fontsFromGgl,
     fontsDetailFromGgl: state.fontsDetailFromGgl,
@@ -54,18 +48,6 @@ const mapDispatchToProps = dispatch => {
       }).catch(err => {
         console.error(err);
       });
-    },
-
-    openSignUpModal() {
-      dispatch(openSignUpModal());
-    },
-
-    openLoginModal() {
-      dispatch(openLoginModal());
-    },
-
-    openUploadModal() {
-      dispatch(openUploadModal());
     },
 
     login({email, password}) {
@@ -126,7 +108,6 @@ const mapDispatchToProps = dispatch => {
       }).then(res => {
         if (res.status === 200) {
           alert('업로드가 완료되었습니다.');
-          console.log(res);
           window.location.reload();
         } else if (res.status === 400) {
           alert('이미 존재하는 폰트입니다.');

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, TextField, Typography, Button, MenuItem } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -9,10 +8,6 @@ import { debounce } from 'lodash';
 
 const styles = theme => ({
   root: {
-    width: '350px',
-    position: 'absolute',
-    right: '20px',
-    top: '15%',
     paddingBottom: 0
   },
   heading: {
@@ -187,7 +182,9 @@ class Controlpanel extends Component {
               >
                 {
                   this.props.fontsFromGgl.length 
-                  ? this.props.fontsFromGgl.map(({variant}) => {
+                  ? this.props.fontsFromGgl.filter(font => {
+                    return font.family === this.props.textBlockData.textBlockFontFamily;
+                  }).map(({variant}, index) => {
                     return (
                       <MenuItem key={variant} value={variant}>
                         {variant}
@@ -372,9 +369,5 @@ class Controlpanel extends Component {
     );
   }
 }
-
-Controlpanel.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Controlpanel);

@@ -13,8 +13,7 @@ class Account extends Component {
       </div>)
     } else {
       AccountComponent = (<div className="account">
-        <Button className="btn-signup" onClick={this.props.openSignUpModal}>회원가입</Button>
-        <Button className="btn-login" onClick={this.props.openLoginModal}>로그인</Button>
+        
       </div>)
     }
     return AccountComponent;
