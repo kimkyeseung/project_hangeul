@@ -15,7 +15,6 @@ class Tryout extends Component {
       selectedTextBlockIndex: 0,
       blockInfoIndex: 0,
       texblockCount: 1,
-      shareSource: null
     };
   }
 
@@ -101,8 +100,15 @@ class Tryout extends Component {
     }
     plate.appendChild(board);
     let shareSource = plate.innerHTML;
-    this.setState({ shareSource });
-    console.log(this.state.shareSource);
+
+    let clipboard = document.createElement('textarea');
+    clipboard.value = shareSource;
+    document.body.appendChild(clipboard);
+    clipboard.select();
+    document.execCommand('copy');
+    document.body.removeChild(clipboard);
+
+    alert('클립보드에 소스가 복사되었습니다.');
   }
 
   render() {
