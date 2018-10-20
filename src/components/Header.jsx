@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
+import { Button, AppBar, Toolbar, Divider, Typography, IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import Signup from './Signup';
 import Login from './Login';
 import './style/header.css';
@@ -12,27 +13,37 @@ class Header extends Component {
       showLoginModal: false,
       showSignUpModal: false,
       showuploadModal: false,
-      openAccountMenu: false
+      anchor: null
     };
   }
 
-  handleChange = event => {
+  handleChange(event) {
     this.setState({ auth: event.target.checked });
   }
 
-  handleOpen = context => {
-    console.log(this.state[context]);
+  handleOpen(context) {
     this.setState({ [context]: true });
   }
 
-  handleClose = () => {
+  handleMenuOpen(ev) {
+    console.log(ev.currentTarget);
+    this.setState({
+      anchor: ev.currentTarget
+    })
+  }
+
+  handleClose() {
     this.setState({
       showLoginModal: false,
       showSignUpModal: false,
       showuploadModal: false,
-      openAccountMenu: false
+      anchor: null
     });
   }
+
+  idGenerate() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
 
   render() {
 
@@ -47,37 +58,42 @@ class Header extends Component {
               퍼가요
               {/* </Button> */}
             </Typography>
+            <Divider/>
             {(
               <div>
                 {
                   this.props.user.name
-                    ? <div>
+                    ? <div style={{position: 'relative'}}>
                       <IconButton
                         aria-haspopup="true"
                         aria-owns="authenticated_account"
-                        onClick={this.handleMenu}
+                        onClick={this.handleMenuOpen.bind(this)}
                         color="inherit"
                       >
-                        <Menu
-                          id="authenticated_account"
-                          anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                          }}
-                          transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                          }}
-                          open={this.state.openAccountMenu}
-                          onClose={this.handleClose}
-                        >
-
-                          <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                          <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                        </Menu>
-
                         <AccountCircle />
                       </IconButton>
+                      <Menu
+                        id="authenticated_account"
+                        // anchorOrigin={{
+                        //   vertical: 'top',
+                        //   horizontal: 'right',
+                        // }}
+                        // transformOrigin={{
+                        //   vertical: 'top',
+                        //   horizontal: 'right',
+                        // }}
+                        anchorEl={this.state.anchor}
+                        open={this.state.anchor}
+                        onClose={this.handleClose.bind(this)}
+                        >
+                        <MenuItem onClick={this.handleClose.bind(this)}>My Page</MenuItem>
+                        <MenuItem onClick={this.handleClose.bind(this)}>
+                          <Link to={`/tryout/${this.idGenerate()}`}>
+                            Tryout
+                            </Link>
+                        </MenuItem>
+                      </Menu>
+                      {this.props.user.name}님
                     </div>
                     : <div>
                       <Button
@@ -94,16 +110,16 @@ class Header extends Component {
                         }}>
                         로그인
                       </Button>
-                      {/* <Modal
+                      <Modal
                         open={this.state.showSignUpModal}
-                        onClose={this.handleClose}
+                        onClose={this.handleClose.bind(this)}
                       >
                         <Signup signUp={this.props.signUp} />
-                      </Modal> */}
+                      </Modal>
 
                       <Modal
                         open={this.state.showLoginModal}
-                        onClose={this.handleClose}
+                        onClose={this.handleClose.bind(this)}
                       >
                         <Login login={this.props.login} />
                       </Modal>
