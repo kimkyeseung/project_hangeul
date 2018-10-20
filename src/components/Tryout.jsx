@@ -56,19 +56,27 @@ class Tryout extends Component {
     let plate = document.createElement('div');
     let board = document.createElement('div');
 
-    for (let style in this.props.boardData) {
-      let styleProp = style.toLowerCase()[5]+ style.slice(6);
-      if (this.props.boardData[styleProp]) {
-        board.style[styleProp] = this.props.boardData[styleProp];
-      }
-    }
-    const textBlocks = this.props.textBlocks;
+    const boardData = this.props.boardData;
+    board.style.width = boardData.boardWidth;
+    board.style.height = boardData.boardHeight;
+    board.style.backgroundColor = boardData.boardBackgroundColor;
+    board.style.borderWidth = boardData.boardBorderWidth;
+    board.style.borderStyle = boardData.boardBorderStyle;
+    board.style.borderColor = boardData.boardBorderColor;
+    plate.appendChild(board);
 
+    const textBlocks = this.props.textBlocks;
     let count = this.state.texblockCount;
     for (let i = 0; i < count; i++) {
       let textblock = document.createElement('div');
       if (textBlocks[i].textBlockBackgroundColor) textblock.style.backgroundColor = this.props.textBlocks[i].textBlockBackgroundColor;
-      if (textBlocks[i].textBlockFontFamily) textblock.style.fontFamily = textBlocks[i].textBlockFontFamily;
+      if (textBlocks[i].textBlockFontFamily) {
+        textblock.style.fontFamily = textBlocks[i].textBlockFontFamily
+        let link = document.createElement('link');
+        link.href = `https://fonts.googleapis.com/css?family=${textBlocks[i].textBlockFontFamily.replace(/ /g,'+')}`;
+        link.rel = 'stylesheet';
+        plate.appendChild(link);
+      };
       if (textBlocks[i].textBlockLetterSpace) textblock.style.letterSpacing = textBlocks[i].textBlockLetterSpace;
       textblock.textContent = textBlocks[i].text;
       textblock.style.color = textBlocks[i].textBlockColor;
@@ -93,7 +101,7 @@ class Tryout extends Component {
     }
     plate.appendChild(board);
     let shareSource = plate.innerHTML;
-    this.setState({shareSource});
+    this.setState({ shareSource });
     console.log(this.state.shareSource);
   }
 
@@ -180,8 +188,8 @@ class Tryout extends Component {
             fontsFromGgl={this.props.fontsFromGgl}
           />
           <Button
-          onClick={this.shareSource.bind(this)}>
-          {/* onClick={ev => {
+            onClick={this.shareSource.bind(this)}>
+            {/* onClick={ev => {
             this.shareSource.call(this);
           }}> */}
             소스 공유하기
