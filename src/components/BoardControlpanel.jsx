@@ -34,7 +34,7 @@ class BoardControlpanel extends Component {
     this.props.colorPickHandler(rgb, locate, prop);
   }
 
-  dataAdjustHandler = debounce(this.props.dataAdjustHandler, 1000);
+  dataAdjustHandler = debounce(this.props.dataAdjustHandler, 100);
 
 
   render() {

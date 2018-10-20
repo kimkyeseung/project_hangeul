@@ -46,7 +46,7 @@ class Controlpanel extends Component {
     this.props.colorPickHandler(rgb, locate, prop);
   }
 
-  dataAdjustHandler = debounce(this.props.dataAdjustHandler, 1000);
+  dataAdjustHandler = debounce(this.props.dataAdjustHandler, 100);
   
 
   render() {
@@ -361,9 +361,9 @@ class Controlpanel extends Component {
 
         </ExpansionPanel>
 
-        <Button onClick={() => {
+        {/* <Button onClick={() => {
           console.log(document.getElementById('tryout-board').innerHTML);
-        }}>소스 공유하기</Button>
+        }}>소스 공유하기</Button> */}
       </div>
 
     );

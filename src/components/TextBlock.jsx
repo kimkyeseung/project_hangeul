@@ -116,8 +116,7 @@ class TextBlock extends Component {
       >
         <div style={displayStyle}>{this.props.textBlockData.text}
           {
-            this.state.editMode
-              ?
+            this.state.editMode ?
               <textarea
                 // type="text"
                 autoFocus={true}

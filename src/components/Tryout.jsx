@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Tab } from '@material-ui/core';
+import { Tabs, Tab, Button } from '@material-ui/core';
 import TextBlock from './TextBlock';
 import BoardControlpanel from './BoardControlpanel';
 import Controlpanel from './Controlpanel';
@@ -14,7 +14,8 @@ class Tryout extends Component {
       isBlockinfoOn: false,
       selectedTextBlockIndex: 0,
       blockInfoIndex: 0,
-      texblockCount: 1
+      texblockCount: 1,
+      shareSource: null
     };
   }
 
@@ -49,6 +50,51 @@ class Tryout extends Component {
         texblockCount: prevState.texblockCount + 1
       };
     });
+  }
+
+  shareSource() {
+    let plate = document.createElement('div');
+    let board = document.createElement('div');
+
+    for (let style in this.props.boardData) {
+      let styleProp = style.toLowerCase()[5]+ style.slice(6);
+      if (this.props.boardData[styleProp]) {
+        board.style[styleProp] = this.props.boardData[styleProp];
+      }
+    }
+    const textBlocks = this.props.textBlocks;
+
+    let count = this.state.texblockCount;
+    for (let i = 0; i < count; i++) {
+      let textblock = document.createElement('div');
+      if (textBlocks[i].textBlockBackgroundColor) textblock.style.backgroundColor = this.props.textBlocks[i].textBlockBackgroundColor;
+      if (textBlocks[i].textBlockFontFamily) textblock.style.fontFamily = textBlocks[i].textBlockFontFamily;
+      if (textBlocks[i].textBlockLetterSpace) textblock.style.letterSpacing = textBlocks[i].textBlockLetterSpace;
+      textblock.textContent = textBlocks[i].text;
+      textblock.style.color = textBlocks[i].textBlockColor;
+      textblock.style.fontSize = textBlocks[i].textBlockFontSize;
+      textblock.style.fontWeight = textBlocks[i].textBlockFontWeight;
+      textblock.style.height = textBlocks[i].textBlockHeight;
+      textblock.style.width = textBlocks[i].textBlockWidth;
+      textblock.style.lineHeight = textBlocks[i].textBlockLineHeight;
+      textblock.style.marginTop = textBlocks[i].textBlockMarginTop;
+      textblock.style.marginBottom = textBlocks[i].textBlockMarginBottom;
+      textblock.style.marginLeft = textBlocks[i].textBlockMarginLeft;
+      textblock.style.marginRight = textBlocks[i].textBlockMarginLeft;
+      textblock.style.paddingTop = textBlocks[i].textBlockPaddingTop;
+      textblock.style.paddingBottom = textBlocks[i].textBlockPaddingBottom;
+      textblock.style.paddingLeft = textBlocks[i].textBlockPaddingLeft;
+      textblock.style.paddingRight = textBlocks[i].textBlockPaddingRight;
+      textblock.style.textAlign = textBlocks[i].textBlockTextAlign;
+      textblock.style.textShadow = `${textBlocks[i].textblockTextShadowHorizontal} ${textBlocks[i].textblockTextShadowVertical} ${textBlocks[i].textblockTextShadowBlur} ${textBlocks[i].textblockTextShadowColor}`;
+      textblock.style.webkitTextStrokeColor = textBlocks[i].textBlockTextStrokeColor;
+      textblock.style.webkitTextStrokeWidth = textBlocks[i].textBlockTextStrokeWidth;
+      board.appendChild(textblock);
+    }
+    plate.appendChild(board);
+    let shareSource = plate.innerHTML;
+    this.setState({shareSource});
+    console.log(this.state.shareSource);
   }
 
   render() {
@@ -133,6 +179,13 @@ class Tryout extends Component {
             dataAdjustHandler={this.props.dataAdjustHandler}
             fontsFromGgl={this.props.fontsFromGgl}
           />
+          <Button
+          onClick={this.shareSource.bind(this)}>
+          {/* onClick={ev => {
+            this.shareSource.call(this);
+          }}> */}
+            소스 공유하기
+        </Button>
         </div>
       </div>
     );
