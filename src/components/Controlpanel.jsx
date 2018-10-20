@@ -3,7 +3,7 @@ import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, TextField
 import { withStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WebFont from 'webfontloader';
-import { BlockPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 import { debounce } from 'lodash';
 
 const styles = theme => ({
@@ -59,7 +59,7 @@ class Controlpanel extends Component {
             <Typography className={classes.heading}>배경 / 위치(외부여백)</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <BlockPicker
+            <SketchPicker
               width='240px'
               color={this.props.textBlockData.textBlockBackgroundColor}
               onChangeComplete={
@@ -112,7 +112,7 @@ class Controlpanel extends Component {
             <p variant="body1">글씨, 문단</p>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <BlockPicker
+            <SketchPicker
               width='240px'
               color={this.props.textBlockData.textBlockColor}
               onChangeComplete={
@@ -304,7 +304,7 @@ class Controlpanel extends Component {
             </div>
             </ExpansionPanelDetails>
             <ExpansionPanelDetails>
-              <BlockPicker
+              <SketchPicker
                 width='240px'
                 color={this.props.textBlockData.textBlockTextStrokeColor}
                 onChangeComplete={
@@ -321,7 +321,7 @@ class Controlpanel extends Component {
 
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <BlockPicker
+            <SketchPicker
               width='240px'
               color={this.props.textBlockData.textBlockTextShadowColor}
               onChangeComplete={
