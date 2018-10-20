@@ -20,11 +20,11 @@ class Signup extends Component {
       emailValidation: false,
       passwordValidation: false,
       passwordConfirmValidation: false
-    }
+    };
   }
+  
   onSignUpClick(ev) {
     ev.preventDefault();
-    console.log(ev.target.name.value, ev.target.email.value, ev.target.password.value)
     this.props.signUp({
       name: ev.target.name.value,
       email: ev.target.email.value,
@@ -35,19 +35,19 @@ class Signup extends Component {
   validate(input, ev) {
     if (input === 'name') {
       this.setState({
-        [input]: validateUserName(ev.target.value)
+        [`${input}Validation`]: validateUserName(ev.target.value)
       });
     } else if (input === 'email') {
       this.setState({
-        [input]: validateEmail(ev.target.value)
+        [`${input}Validation`]: validateEmail(ev.target.value)
       });
     } else if (input === 'password') {
       this.setState({
-        [input]: validatePassword(ev.target.value)
+        [`${input}Validation`]: validatePassword(ev.target.value)
       });
     } else if (input === 'password_confirm') {
       this.setState({
-        [input]: document.getElementById('password').value === ev.target.value
+        [`${input}Validation`]: document.getElementById('password').value === ev.target.value
       });
     }
   }
@@ -64,6 +64,7 @@ class Signup extends Component {
               name="name"
               id="name"
               fullWidth
+              required
               onChange={this.validate.bind(this, 'name')}
               error={this.state.nameValidation}
             />
@@ -77,6 +78,7 @@ class Signup extends Component {
               id="email" 
               name="email"
               fullWidth
+              required
               onChange={this.validate.bind(this, 'email')}
               error={this.state.emailValidation}
             />
@@ -90,6 +92,7 @@ class Signup extends Component {
               id="password"
               name="password"
               fullWidth
+              required
               onChange={this.validate.bind(this, 'password')}
               error={this.state.passwordValidation}
             />
@@ -103,6 +106,7 @@ class Signup extends Component {
               id="password_confirm"
               name="password_confirm"
               fullWidth
+              required
               onChange={this.validate.bind(this, 'password_confirm')}
               error={this.state.passwordConfirmValidation}
             />

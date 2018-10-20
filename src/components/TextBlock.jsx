@@ -50,6 +50,7 @@ class TextBlock extends Component {
       top: 0,
       left: 0,
       width: '100%',
+      whiteSpace: 'pre',
       height: this.props.textBlockData.textBlockHeight,
       color: this.props.textBlockData.textBlockColor,
       fontFamily: this.props.textBlockData.textBlockFontFamily,
@@ -117,8 +118,8 @@ class TextBlock extends Component {
           {
             this.state.editMode
               ?
-              <input
-                type="text"
+              <textarea
+                // type="text"
                 autoFocus={true}
                 defaultValue={this.props.textBlockData.text}
                 onKeyDown={ev => {

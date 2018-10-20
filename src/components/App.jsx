@@ -35,7 +35,7 @@ let defaultMainStyle = {
 
 class App extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       listLimit: 4,
       titleStyle: defaultMainStyle.titleStyle,
@@ -88,6 +88,7 @@ class App extends Component {
           openSignUpModal={this.props.openSignUpModal}
           openLoginModal={this.props.openLoginModal}
           openUploadModal={this.props.openUploadModal}
+          login={this.props.login}
           logout={this.props.logout}
           signUp={this.props.signUp}
           user={this.props.user} />
