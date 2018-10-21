@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Button, AppBar, Toolbar, Divider, Typography, IconButton, Menu, MenuItem, Modal } from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import idGenerate from '../utils/idGenerate';
 import Signup from './Signup';
 import Login from './Login';
-import './style/header.css';
 
 class Header extends Component {
   constructor(props) {
@@ -41,22 +41,18 @@ class Header extends Component {
     });
   }
 
-  idGenerate() {
-    return '_' + Math.random().toString(36).substr(2, 9);
-  };
-
   render() {
 
     //logout={this.props.logout}
     //user={this.props.user}
     return (
       <div>
-        <AppBar position="fixed" className="header" color="white">
+        <AppBar position="fixed" className="header" color="inherit">
           <Toolbar>
             <Typography variant="headline" color="inherit" className="logo">
-              {/* <Button component={Link} to="/"> */}
-              퍼가요
-              {/* </Button> */}
+              <Button component={Link} to="/">
+                <h2>퍼가요</h2>
+              </Button>
             </Typography>
             <Divider/>
             {(
@@ -74,24 +70,21 @@ class Header extends Component {
                       </IconButton>
                       <Menu
                         id="authenticated_account"
-                        // anchorOrigin={{
-                        //   vertical: 'top',
-                        //   horizontal: 'right',
-                        // }}
-                        // transformOrigin={{
-                        //   vertical: 'top',
-                        //   horizontal: 'right',
-                        // }}
                         anchorEl={this.state.anchor}
                         open={this.state.anchor}
                         onClose={this.handleClose.bind(this)}
                         >
-                        <MenuItem onClick={this.handleClose.bind(this)}>My Page</MenuItem>
                         <MenuItem onClick={this.handleClose.bind(this)}>
-                          <Link to={`/tryout/${this.idGenerate()}`}>
-                            Tryout
-                            </Link>
+                          <Link to={`/user/${this.props.user.name}`}>
+                            My Page
+                          </Link>
                         </MenuItem>
+                        <MenuItem onClick={this.handleClose.bind(this)}>
+                          <Link to={`/tryout/${idGenerate()}`}>
+                            Tryout
+                          </Link>
+                        </MenuItem>
+                        <MenuItem onClick={this.props.logout.bind(this)}>logout</MenuItem>
                       </Menu>
                       {this.props.user.name}님
                     </div>

@@ -165,7 +165,7 @@ class Tryout extends Component {
           style={{
             position: 'absolute',
             right: '20px',
-            top: '8%',
+            top: '10%',
           }}>
           <BoardControlpanel
             dataAdjustHandler={this.props.dataAdjustHandler}

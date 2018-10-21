@@ -9,6 +9,7 @@ import Upload from './Upload';
 import FontDetail from './FontDetail';
 import Tryout from './Tryout';
 import Header from './Header';
+import Mypage from './Mypage';
 import { TextField } from '@material-ui/core';
 import { debounce } from 'lodash';
 
@@ -24,7 +25,7 @@ let defaultMainStyle = {
   },
   shrinkedTitleStyle: {
     fontSize: '40px',
-    paddingTop: '80px',
+    paddingTop: '160px',
     marginBottom: '20px'
   },
   shrinkedSubTitleStyle: {
@@ -37,7 +38,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listLimit: 4,
+      listLimit: 8,
       titleStyle: defaultMainStyle.titleStyle,
       subTitleStyle: defaultMainStyle.subTitleStyle,
       searchKeyword: ''
@@ -62,12 +63,12 @@ class App extends Component {
       });
     }
 
-    if (window.scrollY > 100) {
+    if (window.scrollY > 25) {
       this.setState({
         titleStyle: defaultMainStyle.shrinkedTitleStyle,
         subTitleStyle: defaultMainStyle.shrinkedSubTitleStyle
       })
-    } else {
+    }  else if (window.scrollY === 0) {
       this.setState({
         titleStyle: defaultMainStyle.titleStyle,
         subTitleStyle: defaultMainStyle.subTitleStyle
@@ -144,6 +145,15 @@ class App extends Component {
               />
             );
           }} />
+
+          <Route path="/user/:user_name" render={({match}) => {
+            return (
+              <Mypage
+                user={this.props.user}
+                
+              />
+            );
+          }}/> 
 
           <Route path="/tryout/:tryout_id" render={({ match }) => {
             let textBlocks = [

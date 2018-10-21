@@ -4,6 +4,7 @@ import { ThumbUp } from '@material-ui/icons';
 import { Card, Button, CardContent, IconButton } from '@material-ui/core';
 import './style/fontlist.css';
 import WebFont from 'webfontloader';
+import idGenerate from '../utils/idGenerate';
 import { dummyGenerate } from '../utils/dummyTexts';
 
 class FontList extends Component {
@@ -15,7 +16,7 @@ class FontList extends Component {
   }
 
   componentDidMount() {
-    this.props.getFontsListFromGgl();
+    this.props.fontsFromGgl.length || this.props.getFontsListFromGgl();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -49,7 +50,7 @@ class FontList extends Component {
                   className="main-font-list-tryout"
                   size="small"
                   color="primary"
-                  href={this.props.user.name ? '/tryout/:id' : null}
+                  href={this.props.user.name ? `/tryout/${idGenerate()}` : null}
                 >
                   Tryout
                 </Button>

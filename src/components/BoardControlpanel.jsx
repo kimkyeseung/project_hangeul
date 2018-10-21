@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, TextField, Typography, Button, MenuItem } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, TextField, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import WebFont from 'webfontloader';
+import { ExpandMore } from '@material-ui/icons';
 import { BlockPicker } from 'react-color';
 import { debounce } from 'lodash';
 
@@ -44,8 +43,8 @@ class BoardControlpanel extends Component {
     return (
       <div className={classes.root}>
         <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')} >
-          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography className={classes.heading}>캔버스</Typography>
+          <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+            <Typography variant="h4" className={classes.heading}>캔버스</Typography>
           </ExpansionPanelSummary>
 
           <ExpansionPanelDetails>
@@ -70,7 +69,7 @@ class BoardControlpanel extends Component {
           </ExpansionPanelDetails>
           <ExpansionPanelDetails>
             <BlockPicker
-              width='240px'
+              width="240px"
               color={this.props.boardData.boardBackgroundColor}
               onChangeComplete={
                 this.handleChangeComplete.bind(this, identity, 'boardBackgroundColor')

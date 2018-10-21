@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import WebFont from 'webfontloader';
 import { dummyGenerate } from '../utils/dummyTexts';
 import { Typography } from '@material-ui/core';
+import idGenerate from '../utils/idGenerate';
 import './style/fontdetail.css';
 
 class FontDetail extends Component {
@@ -21,12 +22,11 @@ class FontDetail extends Component {
         families: [this.state.family]
       }
     });
-    this.props.getFontDetailFromGgl(this.state.family);
   }
 
   render() {
     return (
-      <div className="font-detail" style={{fontFamily: this.state.family}}>
+      <div className="font-detail" style={{fontFamily: this.state.family, padding: '40px'}}>
         <div className="font-detail-left" >
           <Typography component="p">Font Name</Typography>
           <div className="font-detail-title">{this.state.family}</div>
@@ -50,21 +50,21 @@ class FontDetail extends Component {
           ABCDEFGHIJKLMNOPQRSTUVWXYZ<br/>abcdefghijklmnopqrstuvwxyz가개갸거게겨고괴괘교구귀궤규그긔기나내냐너네녀노뇌놰뇨누뉘눼뉴느늬니다대댜더데뎌도되돼됴두뒤뒈류드듸디라래랴러레려로뢰뢔료루뤼뤠류르릐리마매먀머메며모뫼뫠묘무뮈뭬뮤므믜미바배뱌버베벼보뵈봬뵤부뷔붸뷰브븨비사새샤서세셔소쇠쇄쇼수쉬쉐슈브븨비아애야어에여오외왜요우위웨유으의이자재쟈저제져조죄좨죠주쥐줴쥬즈즤지차채챠처체쳐초최쵀쵸추취췌츄츠츼치카캐캬커케켜코쾨쾌쿄쿠퀴퀘큐크킈키타태탸터테텨토퇴퇘툐투튀퉤튜트틔티파패퍄퍼페펴포푀퐤표푸퓌풰퓨프픠피하해햐허헤혀호회홰효후휘훼휴흐희히1234567890
           </div>
 
-          <Typography component="p">styles</Typography>
+          {/* <Typography component="p">styles</Typography> */}
           <hr/>
           {
-            // this.props.fontsDetailFromGgl.variants ? 
+            this.props.fontsFromGgl.variants ? 
             <ul className="font-detail-variant">
-              {this.props.fontsDetailFromGgl.variants.map(style => {
+              {this.props.fontsFromGgl.variants.map(style => {
                 return (
-                  <li style={{fontFamily: `${this.props.fontsDetailFromGgl.family}:${style}`}}>{style}</li>
+                  <li style={{fontFamily: `${this.props.fontsFromGgl.family}:${style}`}}>{style}</li>
                 );
               })}
             </ul>
-            //  : null
+             : null
           }
           
-          <Button component={Link} to="/tryout">Tryout</Button>
+          <Button component={Link} to={`/tryout/${idGenerate()}`}>Tryout</Button>
         </div>
       </div>
     );

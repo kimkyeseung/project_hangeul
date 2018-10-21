@@ -41,7 +41,7 @@ body {
 
 .App-body h1,h2 {
   overflow: visible;
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 .App-body App-body-fontlist {
