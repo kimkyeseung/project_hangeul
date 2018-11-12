@@ -76,4 +76,3 @@ Amazon Web Service의 Elastin Beanstalk 서비스를 이용하여 배포하였�
 - Code Refactoring
 - Unit Test
 
-Special thanks to [Ken Huh](https://github.com/Ken123777)
