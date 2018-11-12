@@ -51,7 +51,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     login({email, password}) {
-      fetch('http://192.168.0.46:5000/login', {
+      fetch('http://api-dev.pergayo.com/login', {
         method: 'POST',
         body: JSON.stringify({
           email,
@@ -77,7 +77,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     signUp({name, email, password}) {
-      fetch('http://192.168.0.46:5000/signup', {
+      fetch('http://api-dev.pergayo.com/signup', {
         method: 'POST',
         body: JSON.stringify({
           name,
@@ -102,7 +102,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     upload(formData) {
-      fetch('http://192.168.0.46:5000/upload', {
+      fetch('http://api-dev.pergayo.com/upload', {
         method: 'POST',
         body: formData
       }).then(res => {
