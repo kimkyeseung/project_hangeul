@@ -50,7 +50,8 @@ class FontList extends Component {
                   className="main-font-list-tryout"
                   size="small"
                   color="primary"
-                  href={this.props.user.name ? `/tryout/${idGenerate()}` : null}
+                  // href={this.props.user.name ? `/tryout/${idGenerate()}` : null}
+                  href={`/tryout/${idGenerate()}`}
                 >
                   Tryout
                 </Button>
