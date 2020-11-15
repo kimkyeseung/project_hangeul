@@ -1,4 +1,4 @@
-# [퍼가요(Project Hangeul : Pergayo)](https://pergayo.com/)
+# [퍼가요(Project Hangeul : Pergayo)](https://pensive-kowalevski-11fed7.netlify.app/)
 
 ## Introduction
 퍼가요는 구글에서 제공하는 웹폰트 API를 이용하여 여러 웹폰트들을 직접 사용해보고 원하는 크기, 자간, 행간 뿐만 아니라 배경색 및 테두리, 그림자 효과 등으로 편집하고 공유할 수 있는 어플리케이션입니다.
