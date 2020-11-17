@@ -11,8 +11,7 @@ import {
   logout,
   login
 } from '../action';
-import { ACCESS_KEY } from '../config';
-
+import { ACCESS_KEY, API_URL, JWT_SECRET } from '../config';
 
 const mapStateToProps = state => {
   return {
@@ -51,7 +50,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     login({email, password}) {
-      fetch('http://api-dev.pergayo.com/login', {
+      fetch(`${API_URL}/login`, {
         method: 'POST',
         body: JSON.stringify({
           email,
@@ -61,8 +60,11 @@ const mapDispatchToProps = dispatch => {
       }).then(res => {
         if (res.status === 200) {
           res.json().then(data => {
-            jwt.verify(data.token, 'KimKyeseung!', (err, decode) => {
-              dispatch(login({ name: decode.name, email: decode.email }))
+            jwt.verify(data.token, JWT_SECRET, (err, decode) => {
+              console.log(decode, err, JWT_SECRET)
+              if (decode) {
+                dispatch(login({ name: decode.name, email: decode.email }))
+              }
             });
           }).catch(err => {
             console.error(err);
@@ -77,7 +79,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     signUp({name, email, password}) {
-      fetch('http://api-dev.pergayo.com/signup', {
+      fetch(`${API_URL}/signup`, {
         method: 'POST',
         body: JSON.stringify({
           name,
@@ -102,7 +104,7 @@ const mapDispatchToProps = dispatch => {
     },
 
     upload(formData) {
-      fetch('http://api-dev.pergayo.com/upload', {
+      fetch(`${API_URL}/upload`, {
         method: 'POST',
         body: formData
       }).then(res => {
