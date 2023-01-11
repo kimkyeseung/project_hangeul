@@ -10,7 +10,7 @@
     "cors": "^2.8.4",
     "fontfaceobserver": "^2.0.13",
     "history": "^4.7.2",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.11",
     "react": "^16.5.2",
     "react-color": "^2.14.1",
